@@ -1,0 +1,20 @@
+{
+  "name": "simple-api-http",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/manussampaio/simple-api-http#readme",
+  "bugs": {
+    "url": "https://github.com/manussampaio/simple-api-http/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manussampaio/simple-api-http.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
