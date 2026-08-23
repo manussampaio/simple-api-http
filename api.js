@@ -15,6 +15,7 @@ const server = http.createServer((req, res) => {
 	if (req.method == "GET" && req.url == "/tarefas") {
 		res.statusCode = 200;
 		res.end(JSON.stringify(tarefas));
+
 	} else if (req.method === "GET" && req.url.startsWith("/tarefas/busca")) {
 		const url = new URL(req.url, 'http://localhost');
 		const titulo = url.searchParams.get("titulo") || "";
@@ -26,7 +27,16 @@ const server = http.createServer((req, res) => {
 		res.statusCode = 200;
 		res.end(JSON.stringify(tarefasFiltradas));
 
-	}else if (req.method == "POST" && req.url == "/tarefas") {
+	} else if (req.method === "DELETE" && req.url.startsWith("/tarefas")) {
+    	const url = new URL(req.url, 'http://localhost');
+    	const index = url.searchParams.get("index");
+
+    	tarefas.splice(index, 1);
+
+    	res.statusCode = 200;
+    	res.end(JSON.stringify({ mensagem: 'Removido!' }));
+		
+	} else if (req.method == "POST" && req.url == "/tarefas") {
 		let body = ''
 		
 		// Escuta a chegada dos pedaços de dados da requisição
