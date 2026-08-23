@@ -67,6 +67,8 @@ const server = http.createServer((req, res) => {
 			} catch(error){
 				res.statusCode = 400;
 				res.end(JSON.stringify({error: "Formato JSON inválido!"}));
+				//testado com "body: '{"titulo": "Estudar Node",'" no console do navegador, o catch funcionou e o erro foi informado.
+
 				
 			}
 		});
