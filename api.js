@@ -10,11 +10,23 @@ const tarefas = [
 const server = http.createServer((req, res) => {
 	// Toda resposta será em JSON
 	res.setHeader('Content-Type', 'application/json');
+
 	
 	if (req.method == "GET" && req.url == "/tarefas") {
 		res.statusCode = 200;
 		res.end(JSON.stringify(tarefas));
-	} else if (req.method == "POST" && req.url == "/tarefas") {
+	} else if (req.method === "GET" && req.url.startsWith("/tarefas/busca")) {
+		const url = new URL(req.url, 'http://localhost');
+		const titulo = url.searchParams.get("titulo") || "";
+
+		const tarefasFiltradas = tarefas
+			.filter(tarefa => tarefa.titulo.toLowerCase().includes(titulo.toLowerCase())
+		);
+
+		res.statusCode = 200;
+		res.end(JSON.stringify(tarefasFiltradas));
+
+	}else if (req.method == "POST" && req.url == "/tarefas") {
 		let body = ''
 		
 		// Escuta a chegada dos pedaços de dados da requisição
